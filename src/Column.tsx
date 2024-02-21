@@ -12,6 +12,7 @@ import {
 import { useItemDrag } from "./util/useItemDrag";
 import { useDrop } from "react-dnd";
 import { throttle } from "throttle-debounce-ts";
+import { isHidden } from "./util/isHidden";
 
 type ColumnProps = {
   text: string;
@@ -50,7 +51,7 @@ export const Column = ({ text, id }: ColumnProps) => {
   drag(drop(ref));
 
   return (
-    <ColumnContainer ref={ref}>
+    <ColumnContainer ref={ref} ishidden={isHidden(draggedItem, "COLUMN", id)}>
       <ListCardHeader>
         <ColumnTitle>{text}</ColumnTitle>
         <CloseButton
